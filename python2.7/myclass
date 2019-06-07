@@ -32,7 +32,7 @@ import ldap
 # fill dictionary with key "help" to get optional values printed
  
 # DECRECATED:
-# example: example_python.sendmail("mailserver.example.org","25","synnefoBilling <no-reply@synnefo.example.com>","SynnefoBilling","true","/root/jpo/example","filename","firstname.lastname@example.org")
+# example: example_python.sendmail("mailserver.example.org","25","DisplayName <no-reply@service.example.com>","YourSubject","true","/root/jpo/example","filename","firstname.lastname@example.org")
  
 def ldapquery(info):
 # Force user to specify at least the minimum required values: user, password, searchvalue, attribute
@@ -47,7 +47,7 @@ def ldapquery(info):
  
 # Remind user of optional values: server, dn, searchfile
         if "help" in info.keys():
-                print "LDAPQUERY: You may want to specify \"server\" (default:example.org), \"dn\" (default:OU=Locations,DC=example,DC=org) or \"searchfilter\" (default:userPrincipalName) as well"
+                print "LDAPQUERY: You may want to specify \"server\" (default:example.org), \"dn\" (default:OU=OrgUnit,DC=example,DC=org) or \"searchfilter\" (default:userPrincipalName) as well"
  
 # Exit, if minimum required values are not given
         if "user" not in info.keys() or "password" not in info.keys() or "searchvalue" not in info.keys() or "attribute" not in info.keys():
