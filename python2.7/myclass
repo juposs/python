@@ -20,7 +20,7 @@ import ldap
 # fill dictionary with key "help" to get optional values printed
  
 # DEPRECATED:
-# example_python.ldapquery("example.org","server.service","strongpass","OU=Locations,DC=example,DC=org","userPrincipalName","firstname.lastname@example.org","useraccountcontrol")
+# example_python.ldapquery("example.org","server.service","strongpass","OU=OrgUnit,DC=example,DC=org","userPrincipalName","firstname.lastname@example.org","useraccountcontrol")
  
  
 # Write_File variables: path, mode (w=(over)write;a=append), data
