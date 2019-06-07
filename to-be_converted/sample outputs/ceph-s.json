@@ -1,0 +1,334 @@
+{
+    "fsid": "whatever",
+    "health": {
+        "checks": {},
+        "status": "HEALTH_OK",
+        "overall_status": "HEALTH_WARN"
+    },
+    "election_epoch": 194,
+    "quorum": [
+        0,
+        1,
+        2
+    ],
+    "quorum_names": [
+        "mon1",
+        "mon3",
+        "mon2"
+    ],
+    "monmap": {
+        "epoch": 1,
+        "fsid": "whatever",
+        "modified": "2019-04-15 00:11:48.774936",
+        "created": "2019-04-15 00:11:48.774936",
+        "features": {
+            "persistent": [
+                "kraken",
+                "luminous",
+                "mimic",
+                "osdmap-prune"
+            ],
+            "optional": []
+        },
+        "mons": [
+            {
+                "rank": 0,
+                "name": "mon1",
+                "addr": "192.168.10.52:6789/0",
+                "public_addr": "192.168.10.52:6789/0"
+            },
+            {
+                "rank": 1,
+                "name": "mon3",
+                "addr": "192.168.10.94:6789/0",
+                "public_addr": "192.168.10.94:6789/0"
+            },
+            {
+                "rank": 2,
+                "name": "mon2",
+                "addr": "192.168.10.171:6789/0",
+                "public_addr": "192.168.10.171:6789/0"
+            }
+        ]
+    },
+    "osdmap": {
+        "osdmap": {
+            "epoch": 1233,
+            "num_osds": 72,
+            "num_up_osds": 72,
+            "num_in_osds": 72,
+            "full": false,
+            "nearfull": false,
+            "num_remapped_pgs": 0
+        }
+    },
+    "pgmap": {
+        "pgs_by_state": [
+            {
+                "state_name": "active+clean",
+                "count": 812
+            }
+        ],
+        "num_pgs": 812,
+        "num_pools": 5,
+        "num_objects": 156407,
+        "data_bytes": 1259456626240,
+        "bytes_used": 3635896696832,
+        "bytes_avail": 134624082116608,
+        "bytes_total": 138259978813440,
+        "read_bytes_sec": 1301374,
+        "write_bytes_sec": 1023846,
+        "read_op_per_sec": 656,
+        "write_op_per_sec": 72
+    },
+    "fsmap": {
+        "epoch": 1,
+        "by_rank": []
+    },
+    "mgrmap": {
+        "epoch": 139,
+        "active_gid": 8672147,
+        "active_name": "mon1",
+        "active_addr": "192.168.10.52:6800/96",
+        "available": true,
+        "standbys": [
+            {
+                "gid": 9104234,
+                "name": "mon2",
+                "available_modules": [
+                    {
+                        "name": "balancer",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "dashboard",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "hello",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "influx",
+                        "can_run": false,
+                        "error_string": "influxdb python module not found"
+                    },
+                    {
+                        "name": "iostat",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "localpool",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "prometheus",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "restful",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "selftest",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "smart",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "status",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "telegraf",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "telemetry",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "zabbix",
+                        "can_run": true,
+                        "error_string": ""
+                    }
+                ]
+            },
+            {
+                "gid": 9123221,
+                "name": "mon3",
+                "available_modules": [
+                    {
+                        "name": "balancer",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "dashboard",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "hello",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "influx",
+                        "can_run": false,
+                        "error_string": "influxdb python module not found"
+                    },
+                    {
+                        "name": "iostat",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "localpool",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "prometheus",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "restful",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "selftest",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "smart",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "status",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "telegraf",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "telemetry",
+                        "can_run": true,
+                        "error_string": ""
+                    },
+                    {
+                        "name": "zabbix",
+                        "can_run": true,
+                        "error_string": ""
+                    }
+                ]
+            }
+        ],
+        "modules": [
+            "balancer",
+            "dashboard",
+            "status"
+        ],
+        "available_modules": [
+            {
+                "name": "balancer",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "dashboard",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "hello",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "influx",
+                "can_run": false,
+                "error_string": "influxdb python module not found"
+            },
+            {
+                "name": "iostat",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "localpool",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "prometheus",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "restful",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "selftest",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "smart",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "status",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "telegraf",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "telemetry",
+                "can_run": true,
+                "error_string": ""
+            },
+            {
+                "name": "zabbix",
+                "can_run": true,
+                "error_string": ""
+            }
+        ],
+        "services": {
+            "dashboard": "http://192.168.0.25:8081/"
+        }
+    },
+    "servicemap": {
+        "epoch": 1,
+        "modified": "0.000000",
+        "services": {}
+    }
+}
