@@ -13,19 +13,19 @@ Why? Because i like Python and like to use it an improve. But also because i per
 Updates on further steps will most likely follow.
 
 Needed modules/packages for classes in myutil:
+
     ladp:
         python-ldap
-
     mail:
         mimetypes
         #Figure out the actual package name
         MIMEMultipart?
         MIMEText?
-
     file:
         none
 
 Usage for the classes:
+
     ldap:
         from myutil import ldap
         ldapsearch = ldap(user="binduser@example.org", password="strongpass", searchvalue="firstname.lastname@example.org", attr="extensionattribute12")
