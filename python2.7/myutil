@@ -4,7 +4,7 @@
 class ladp:
     import ldap, sys
 
-    std_srv = example.org
+    std_srv = "example.org"
     std_dn = "OU=OrgUnit,DC=example,DC=org"
     std_searchfilter = "userPrincipalName"
 
@@ -31,7 +31,7 @@ class ladp:
         self.attr = attr
 
     def query(self):
-    """Do the ldap query with the given variables"""
+        """Do the ldap query with the given variables"""
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)
         #binddn = self.user
@@ -158,43 +158,43 @@ class mail:
             print "Error: unable to send mail"
 
 class file:
-    def __init__(self, path, data)
+    def __init__(self, path, data):
         self.path = path
         self.data = data
 
     def overwrite(self):
-    """Overwrite the specified file"""
+        """Overwrite the specified file"""
         with open(self.path, "w", self.data) as file:
             file.write(self.data+"\n")
             file.close()
         return None
 
     def overwrite(self):
-    """Append to the end of the specified file"""
+        """Append to the end of the specified file"""
         with open(self.path, "a", self.data) as file:
             file.write(self.data+"\n")
             file.close()
         return None
 
-    def read(self)
-    """Read the specified file"""
+    def read(self):
+        """Read the specified file"""
         #TODO review/test
         with open(self.path, "r") as file:
             result = file.read()
             file.close()
         return result
 
-    def readline(self)
-    """Read the specified file line for line"""
-    #TODO review/test
+    def readline(self):
+        """Read the specified file line for line"""
+        #TODO review/test
         with open(self.path, "r") as file:
             result = file.readline()
             file.close()
         return result
 
-    def create(self)
-    """Create the specified file"""
-    #TODO review/test
+    def create(self):
+        """Create the specified file"""
+        #TODO review/test
         with open(self.path, "x") as file:
             file.write()
             file.close()
