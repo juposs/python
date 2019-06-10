@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
-import ldap, sys
+import ldap, sys, os
 
 import smtplib
 import mimetypes
@@ -9,7 +9,8 @@ from email.MIMEText import MIMEText
 
 class myldap:
     def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
-        # Sort out the given variables and if neccessary fill in default variables
+        """ Sort out the given variables and if neccessary fill in default variables"""
+
         self.searchfilter = searchfilter if searchfilter is not None else "userPrincipalName"
         self.dn = dn if dn is not None else "OU=OrgUnit,DC=example,DC=org"
         self.server = server if server is not None else "example.org"
@@ -20,7 +21,7 @@ class myldap:
 
     def query(self, attr):
         """Do the ldap query with the given variables"""
-        
+
         self.attr = attr
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)
@@ -75,7 +76,8 @@ class myldap:
 
 class mail:
     def __init__(self, subject, text, receipient, server=None, port=None, sendfile=None, filepath=None, sender=None):
-        # Sort out the given variables and if neccessary fill in default variables
+        """ Sort out the given variables and if neccessary fill in default variables"""
+
         self.server = server if server is not None else "mailserver.example.org"
         self.port = port if port is not None else "25"
         self.sendfile = sendfile if sendfile is not None else "false"
@@ -87,7 +89,7 @@ class mail:
         self.receipient = receipient
 
     def send(self):
-        """Send mail"""
+        """Send the mail"""
 
         server = smtplib.SMTP(self.server, self.port)
         msg = MIMEMultipart()
@@ -116,9 +118,15 @@ class mail:
             print "Error: unable to send mail"
 
 class file:
-    def __init__(self, path, data):
-        self.path = path
-        self.data = data
+    def __init__(self, path, data=None):
+        """" Sort out path/filename.txt and data that is probalby written"""
+
+        if os.path.exists(path) and os.path.isfile(path):
+            self.path = path
+        else:
+            print "Given path/filename doesn't exist or not a file."
+            sys.exit(0)
+        self.data = data if data is not None else ""
 
     def overwrite(self):
         """Overwrite the specified file"""

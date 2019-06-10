@@ -1,3 +1,4 @@
+{
 "health": {
     "checks": {
         "OBJECT_MISPLACED": {
@@ -66,3 +67,4 @@
     "num_bytes_recovered": 4194304,
     "num_keys_recovered": 0
 },
+}

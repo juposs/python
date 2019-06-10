@@ -79,7 +79,7 @@
         "read_bytes_sec": 1301374,
         "write_bytes_sec": 1023846,
         "read_op_per_sec": 656,
-        "write_op_per_sec": 72
+        "write_op_per_sec": 72,
     },
     "fsmap": {
         "epoch": 1,
