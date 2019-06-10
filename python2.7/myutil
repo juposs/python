@@ -169,7 +169,7 @@ class file:
             file.close()
         return None
 
-    def overwrite(self):
+    def append(self):
         """Append to the end of the specified file"""
         with open(self.path, "a", self.data) as file:
             file.write(self.data+"\n")
