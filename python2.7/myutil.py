@@ -1,9 +1,13 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
+import ldap, sys
 
-class ladp:
-    import ldap, sys
+import smtplib
+import mimetypes
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 
+class myldap:
     std_srv = "example.org"
     std_dn = "OU=OrgUnit,DC=example,DC=org"
     std_searchfilter = "userPrincipalName"
@@ -34,9 +38,6 @@ class ladp:
         """Do the ldap query with the given variables"""
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)
-        #binddn = self.user
-        #pw = self.password
-        #basedn = self.dn
         searchFilter = self.searchfilter+"="+self.searchvalue
         searchAttribute = [self.attr]
 
@@ -72,8 +73,9 @@ class ladp:
                 dn, value = result_set[0][0]
                 for each in value.keys():
                     value_parsed[each.lower()] = value[each]
-                if attribute in value_parsed.keys():
-                    ldap_value = value_parsed[attribute]
+
+                if searchAttribute[0] in value_parsed.keys():
+                    ldap_value = value_parsed[searchAttribute[0]]
 
                     if ldap_value[0] == "":
                         query()
@@ -86,11 +88,6 @@ class ladp:
         l.unbind_s()
 
 class mail:
-    import smtplib
-    import mimetypes
-    from email.MIMEMultipart import MIMEMultipart
-    from email.MIMEText import MIMEText
-
     std_srv = "mailserver.example.org"
     std_port = "25"
     std_sendfile = "false"
@@ -130,14 +127,14 @@ class mail:
 
     def send(self):
         """Send mail"""
-        
+
         server = smtplib.SMTP(self.server, self.port)
         msg = MIMEMultipart()
         msg["From"] = self.sender
         msg["To"] = self.receipient
         msg["Subject"]  = self.subject
 
-        body = text
+        body = self.text
         msg.attach(MIMEText(body, "plain"))
 
         # Check if user wants to send a file, if so read the specified file and attach it to the message
@@ -152,7 +149,7 @@ class mail:
 
         # Try to send mail
         try:
-            server.sendmail(sender, receipient, message)
+            server.sendmail(self.sender, self.receipient, message)
             print "Successfully send mail(s)"
         except:
             print "Error: unable to send mail"
@@ -199,3 +196,4 @@ class file:
             file.write()
             file.close()
         return result
+
