@@ -8,7 +8,7 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
 class myldap:
-    def __init__(self, user, password, searchvalue, attr, searchfilter=None, dn=None, server=None):
+    def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
         # Sort out the given variables and if neccessary fill in default variables
         self.searchfilter = searchfilter if searchfilter is not None else "userPrincipalName"
         self.dn = dn if dn is not None else "OU=OrgUnit,DC=example,DC=org"
@@ -17,10 +17,11 @@ class myldap:
         self.user = user
         self.password = password
         self.searchvalue = searchvalue
-        self.attr = attr
 
-    def query(self):
+    def query(self, attr):
         """Do the ldap query with the given variables"""
+        
+        self.attr = attr
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)
         searchFilter = self.searchfilter+"="+self.searchvalue
