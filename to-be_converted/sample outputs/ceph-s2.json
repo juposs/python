@@ -1,0 +1,50 @@
+    "osdmap": {
+        "osdmap": {
+            "epoch": 823,
+            "num_osds": 30,
+            "num_up_osds": 30,
+            "num_in_osds": 29,
+            "full": false,
+            "nearfull": false,
+            "num_remapped_pgs": 6
+        }
+    },
+    "pgmap": {
+        "pgs_by_state": [
+            {
+                "state_name": "active+clean",
+                "count": 888
+            },
+            {
+                "state_name": "active+remapped+backfill_wait",
+                "count": 4
+            },
+            {
+                "state_name": "active+recovery_wait+undersized+degraded+remapped",
+                "count": 2
+            },
+            {
+                "state_name": "active+recovering+undersized+remapped",
+                "count": 2
+            }
+        ],
+        "num_pgs": 896,
+        "num_pools": 7,
+        "num_objects": 589,
+        "data_bytes": 1154351447,
+        "bytes_used": 80213835776,
+        "bytes_avail": 29924872290304,
+        "bytes_total": 30005086126080,
+        "degraded_objects": 277,
+        "degraded_total": 1767,
+        "degraded_ratio": 0.156763,
+        "misplaced_objects": 14,
+        "misplaced_total": 1767,
+        "misplaced_ratio": 0.007923,
+        "recovering_objects_per_sec": 25,
+        "recovering_bytes_per_sec": 697503,
+        "recovering_keys_per_sec": 0,
+        "num_objects_recovered": 151,
+        "num_bytes_recovered": 4194304,
+        "num_keys_recovered": 0
+    },
