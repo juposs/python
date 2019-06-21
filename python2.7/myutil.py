@@ -8,26 +8,11 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
 class myldap:
-    std_srv = "example.org"
-    std_dn = "OU=OrgUnit,DC=example,DC=org"
-    std_searchfilter = "userPrincipalName"
-
-    def __init__(self, server, dn, searchfilter, user, password, searchvalue, attr):
+    def __init__(self, user, password, searchvalue, attr, searchfilter=None, dn=None, server=None):
         # Sort out the given variables and if neccessary fill in default variables
-        if server is "":
-            self.server = std_srv
-        else:
-            self.server = server
-
-        if dn is "":
-            self.dn = std_dn
-        else:
-            self.dn = dn
-
-        if searchfilter is "":
-            self.searchfilter = std_searchfilter
-        else:
-            self.searchfilter = searchfilter
+        self.searchfilter = searchfilter if searchfilter is not None else "userPrincipalName"
+        self.dn = dn if dn is not None else "OU=OrgUnit,DC=example,DC=org"
+        self.server = server if server is not None else "example.org"
 
         self.user = user
         self.password = password
@@ -88,38 +73,13 @@ class myldap:
         l.unbind_s()
 
 class mail:
-    std_srv = "mailserver.example.org"
-    std_port = "25"
-    std_sendfile = "false"
-    std_filepath = None
-    std_sender = "no-reply@example.org"
-
-    def __init__(self, server, port, sendfile, filepath, sender, subject, text, receipient):
+    def __init__(self, subject, text, receipient, server=None, port=None, sendfile=None, filepath=None, sender=None):
         # Sort out the given variables and if neccessary fill in default variables
-        if server is "":
-            self.server = std_srv
-        else:
-            self.server = server
-
-        if port is "":
-            self.port = std_port
-        else:
-            self.port = port
-
-        if sendfile is "":
-            self.sendfile = std_sendfile
-        else:
-            self.sendfile = sendfile
-
-        if filepath is "":
-            self.filepath = std_filepath
-        else:
-            self.filepath = filepath
-
-        if sender is "":
-            self.sender = std_sender
-        else:
-            self.sender = sender
+        self.server = server if server is not None else "mailserver.example.org"
+        self.port = port if port is not None else "25"
+        self.sendfile = sendfile if sendfile is not None else "false"
+        self.filepath = filepath if filepath is not None else "None"
+        self.sender = sender if sender is not None else "no-reply@example.org"
 
         self.subject = subject
         self.text = text
@@ -196,4 +156,3 @@ class file:
             file.write()
             file.close()
         return result
-
