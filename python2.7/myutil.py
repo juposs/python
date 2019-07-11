@@ -9,7 +9,19 @@ from email.MIMEText import MIMEText
 
 class myldap:
     def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
-        """ Sort out the given variables and if neccessary fill in default variables"""
+        """ Sort out the given variables and if neccessary fill in default variables
+
+        Usage:
+        Modify defaults in the class and use the minumum parameters:
+        instance = myldap(username, password, searchvalue)
+
+        or give all parameters:
+        instance = myldap(username, password, searchvalue, searchfilter, dn, server)
+
+        "searchvalue" is the value to match to the ldap object, usually "firstname.lastname@example.org"
+        "searchfilter" is the ldap attribute to match the searchvalue to, usually "userPrincipalName"
+        "dn" is the tree you want to start the search in, usually similar to "OU=OrgUnit,DC=example,DC=org"
+        """
 
         self.searchfilter = searchfilter if searchfilter is not None else "userPrincipalName"
         self.dn = dn if dn is not None else "OU=OrgUnit,DC=example,DC=org"
@@ -20,7 +32,13 @@ class myldap:
         self.searchvalue = searchvalue
 
     def query(self, attr):
-        """Do the ldap query with the given variables"""
+        """Do the ldap query with the given variables
+
+        Usage:
+        result = instance.query(attribute)
+
+        "attribute" is the value you want to get from the ldap object, for instance "pwdlastset"
+        """
 
         self.attr = attr
         value_parsed = {}
@@ -75,8 +93,16 @@ class myldap:
         l.unbind_s()
 
 class mail:
-    def __init__(self, subject, text, receipient, server=None, port=None, sendfile=None, filepath=None, sender=None):
-        """ Sort out the given variables and if neccessary fill in default variables"""
+    def __init__(self, subject, text, receipient, sender=None, server=None, port=None, sendfile=None, filepath=None):
+        """ Sort out the given variables and if neccessary fill in default variables
+
+        Usage:
+        Modify defaults in the Class and use the minumum parameters:
+        instance = mail(subject, text, receipient)
+
+        or give all parameters:
+        instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
+        """
 
         self.server = server if server is not None else "mailserver.example.org"
         self.port = port if port is not None else "25"
@@ -89,7 +115,8 @@ class mail:
         self.receipient = receipient
 
     def send(self):
-        """Send the mail"""
+        """Send the mail
+        """
 
         server = smtplib.SMTP(self.server, self.port)
         msg = MIMEMultipart()
@@ -119,7 +146,12 @@ class mail:
 
 class file:
     def __init__(self, path, data=None):
-        """" Sort out path/filename.txt and data that is probalby written"""
+        """Sort out path/filename.txt and data that is probalby written
+
+        Usage:
+        instance = file("/path/to/file.txt")
+        instance = file("/path/to/file.txt", "data")
+        """
 
         if os.path.exists(path) and os.path.isfile(path):
             self.path = path
@@ -129,21 +161,27 @@ class file:
         self.data = data if data is not None else ""
 
     def overwrite(self):
-        """Overwrite the specified file"""
+        """Overwrite the specified file
+        """
+
         with open(self.path, "w", self.data) as file:
             file.write(self.data+"\n")
             file.close()
         return None
 
     def append(self):
-        """Append to the end of the specified file"""
+        """Append to the end of the specified file
+        """
+
         with open(self.path, "a", self.data) as file:
             file.write(self.data+"\n")
             file.close()
         return None
 
     def read(self):
-        """Read the specified file"""
+        """Read the specified file
+        """
+
         #TODO review/test
         with open(self.path, "r") as file:
             result = file.read()
@@ -151,7 +189,9 @@ class file:
         return result
 
     def readline(self):
-        """Read the specified file line for line"""
+        """Read the specified file line for line
+        """
+
         #TODO review/test
         with open(self.path, "r") as file:
             result = file.readline()
@@ -159,7 +199,9 @@ class file:
         return result
 
     def create(self):
-        """Create the specified file"""
+        """Create the specified file
+        """
+
         #TODO review/test
         with open(self.path, "x") as file:
             file.write()

@@ -1,4 +1,4 @@
-# python
+# myutil
 Small Project to write my own Python classes mainly for self-use.
 
 My inital class attempt has all sorts of stuff in it.
@@ -27,21 +27,42 @@ Needed modules/packages for classes in myutil:
 Usage for the classes:
 
     ldap:
-        from myutil import ldap
-        ldapsearch = ldap(user="binduser@example.org", password="strongpass", searchvalue="firstname.lastname@example.org", attr="extensionattribute12")
-        
-        result = ldapsearch.query()
+        from myutil import myldap
+
+        Modify defaults in the class and use the minumum parameters:
+        instance = myldap("binduser@example.org", "strongpass", "john.doe@example.org")
+
+        or give all parameters:
+        instance = myldap("binduser@example.org", "strongpass", "john.doe@example.org", "userPrincipalName", "OU=OrgUnit,DC=example,DC=org", "server.example.org")
+
+        then run query with that instance:
+        result = instance.query("pwdlastset")
+        result2 = instance.query("extensionAttribute12")
+
+        This will search for ldap object where userPrincipalName equals john.doe@example.org and return the value of pwdlastlet to the variable "result" and return whatever is in extensionAttribute12 to variable "result2"
 
     mail:
         from myutil import mail
-        sendmail = mail(subject="ExampleSubject", text="Example text", receipient="firstname.lastname@example.org")
 
-        sendmail.sendmail()
+        Modify defaults in the Class and use the minumum parameters:
+        instance = mail(subject, text, receipient)
+
+        or give all parameters:
+        instance = mail("ExampleSubject", "example text", "john.doe@example.org", "no-rely@example.org", "mailserver.example.org", "25", true, "/path/to/myfile.txt")
+        instance = mail("ExampleSubject", "example text", "john.doe@example.org", "no-rely@example.org", "mailserver.example.org", "25", false)
+
+        then send the mail with that instance:
+        instance.send()
 
     file:
         from myutil import file
-        file1 = file("/path/to/file", "your data")
 
-        file1.read()
+        Without data, for instance you just want to read/create a file
+        instance = file("path/to/file.txt")
+
+        With data, for instance if you want to write/append/overwrite a file
+        instance = file("/path/to/file", "your data")
+
+        instance.read()
 
 myutil is still experimental and needs to be tested!
