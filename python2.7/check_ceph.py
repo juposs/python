@@ -29,8 +29,8 @@ recovering_bytes_per_sec = jsonfile["pgmap"]["recovering_bytes_per_sec"]
 recovering_keys_per_sec = jsonfile["pgmap"]["recovering_keys_per_sec"]
 
 #Ceph_ClientIO
-read_bytes_per_sec = jsonfile["pgmap"]["read_bytes_per_sec"]
-write_bytes_per_sec  = jsonfile["pgmap"]["write_bytes_per_sec"]
+read_bytes_sec = jsonfile["pgmap"]["read_bytes_sec"]
+write_bytes_sec  = jsonfile["pgmap"]["write_bytes_sec"]
 read_op_per_sec  = jsonfile["pgmap"]["read_op_per_sec"]
 write_op_per_sec  = jsonfile["pgmap"]["write_op_per_sec"]
 

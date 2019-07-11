@@ -80,6 +80,18 @@
         "write_bytes_sec": 1023846,
         "read_op_per_sec": 656,
         "write_op_per_sec": 72,
+        "degraded_objects": 277,
+        "degraded_total": 1767,
+        "degraded_ratio": 0.156763,
+        "misplaced_objects": 14,
+        "misplaced_total": 1767,
+        "misplaced_ratio": 0.007923,
+        "recovering_objects_per_sec": 25,
+        "recovering_bytes_per_sec": 697503,
+        "recovering_keys_per_sec": 0,
+        "num_objects_recovered": 151,
+        "num_bytes_recovered": 4194304,
+        "num_keys_recovered": 0
     },
     "fsmap": {
         "epoch": 1,
