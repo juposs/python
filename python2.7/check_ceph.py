@@ -47,7 +47,7 @@ write_op_per_sec  = jsonfile["pgmap"]["write_op_per_sec"]
 
 #Ceph_Health
 
-
+# TODO Check if the values exist for all except heatlh
 # Old outputs
 #echo "$healthstatus Ceph_Health - $STATE"
 #echo "0 Ceph_Stats io_read_mibs=$io_read|io_write_mibs=$io_write|ops_rd_sec=$ops_read|ops_wr_sec=$ops_write IO/read: $io_read MiB/s - IO/write: $io_write MiB/s - OP/s Read: $ops_read - OP/s Write: $ops_write"
