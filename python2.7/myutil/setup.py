@@ -7,13 +7,13 @@ requires = ['python-ldap']
 setuptools.setup(
      name='myutil.py',
      version='1.0',
-     scripts=['myutil.py'] ,
+     py_modules=['myutil'],
      author="Julian Poss",
      author_email="john.doe@gmail.com",
      description="A python utility package",
      long_description="A python utility package for querying ldap, sending mails and working with files",
    long_description_content_type="text/markdown",
-     url="https://github.com/javatechy/dokr",
+     url="https://github.com/juposs/python/tree/master/python2.7/myutil",
      packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 2.7",
