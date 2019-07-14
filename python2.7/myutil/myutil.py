@@ -7,6 +7,18 @@ import mimetypes
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
+#myldap defaults
+default_searchfilter="userPrincipalName"
+default_dn="OU=OrgUnit,DC=example,DC=org"
+default_ldap_server="example.org"
+
+#mail defaults
+default_mail_server="mailserver.example.org"
+default_mail_port="25"
+default_sendfile="false"
+default_filepath="None"
+default_sender="no-reply@example.org"
+
 class myldap:
     def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
         """ Sort out the given variables and if neccessary fill in default variables
@@ -23,9 +35,9 @@ class myldap:
         "dn" is the tree you want to start the search in, usually similar to "OU=OrgUnit,DC=example,DC=org"
         """
 
-        self.searchfilter = searchfilter if searchfilter is not None else "userPrincipalName"
-        self.dn = dn if dn is not None else "OU=OrgUnit,DC=example,DC=org"
-        self.server = server if server is not None else "example.org"
+        self.searchfilter = searchfilter if searchfilter is not None else default_searchfilter
+        self.dn = dn if dn is not None else default_dn
+        self.server = server if server is not None else default_ldap_server
 
         self.user = user
         self.password = password
@@ -104,11 +116,11 @@ class mail:
         instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
         """
 
-        self.server = server if server is not None else "mailserver.example.org"
-        self.port = port if port is not None else "25"
-        self.sendfile = sendfile if sendfile is not None else "false"
-        self.filepath = filepath if filepath is not None else "None"
-        self.sender = sender if sender is not None else "no-reply@example.org"
+        self.server = server if server is not None else default_mail_server
+        self.port = port if port is not None else default_mail_port
+        self.sendfile = sendfile if sendfile is not None else default_sendfile
+        self.filepath = filepath if filepath is not None else default_filepath
+        self.sender = sender if sender is not None else default_sender
 
         self.subject = subject
         self.text = text

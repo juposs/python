@@ -19,13 +19,15 @@ wget https://github.com/juposs/python/tree/master/python2.7/myutil/dist/myutil.p
 
 pip install ./myutil.py-1.0-py2-none-any.whl --user
 
+# Defaults
+Defaults can be modified in $HOME/.local/lib/python2.7/site-packages/myutil.py
 
 # Usage:
 
     ldap:
         from myutil import myldap
 
-        Modify defaults in the class and use the minumum parameters:
+        Modify defaults and use the minumum parameters:
         instance = myldap("binduser@example.org", "strongpass", "john.doe@example.org")
 
         or give all parameters:
@@ -40,7 +42,7 @@ pip install ./myutil.py-1.0-py2-none-any.whl --user
     mail:
         from myutil import mail
 
-        Modify defaults in the Class and use the minumum parameters:
+        Modify defaults and use the minumum parameters:
         instance = mail(subject, text, receipient)
 
         or give all parameters:
