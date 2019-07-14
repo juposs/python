@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: myutil
+Version: 1.0
+Summary: A python utility package
+Home-page: https://github.com/javatechy/dokr
+Author: Julian Poss
+Author-email: john.doe@gmail.com
+License: UNKNOWN
+Description: A python utility package for querying ldap, sending mails and working with files
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: undefined
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
