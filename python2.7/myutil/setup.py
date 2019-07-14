@@ -5,9 +5,9 @@ import setuptools
 requires = ['python-ldap']
 
 setuptools.setup(
-     name='myutil',
+     name='myutil.py',
      version='1.0',
-     scripts=['myutil'] ,
+     scripts=['myutil.py'] ,
      author="Julian Poss",
      author_email="john.doe@gmail.com",
      description="A python utility package",

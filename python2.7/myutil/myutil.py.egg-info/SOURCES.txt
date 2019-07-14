@@ -1,0 +1,7 @@
+myutil.py
+setup.py
+myutil.py.egg-info/PKG-INFO
+myutil.py.egg-info/SOURCES.txt
+myutil.py.egg-info/dependency_links.txt
+myutil.py.egg-info/requires.txt
+myutil.py.egg-info/top_level.txt
