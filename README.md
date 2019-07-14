@@ -12,13 +12,13 @@ Why? Because i like Python and like to use it an improve. But also because i per
 
 Updates on further steps will most likely follow.
 
-#How to install?
+# How to install?
 apt install python-pip
 wget https://github.com/juposs/python/tree/master/python2.7/myutil/dist/myutil.py-1.0-py2-none-any.whl
 pip install ./myutil.py-1.0-py2-none-any.whl --user
 
 
-#Usage:
+# Usage:
 
     ldap:
         from myutil import myldap
