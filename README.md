@@ -12,19 +12,13 @@ Why? Because i like Python and like to use it an improve. But also because i per
 
 Updates on further steps will most likely follow.
 
-Needed modules/packages for classes in myutil:
+#How to install?
+apt install python-pip
+wget https://github.com/juposs/python/tree/master/python2.7/myutil/dist/myutil.py-1.0-py2-none-any.whl
+pip install ./myutil.py-1.0-py2-none-any.whl --user
 
-    ladp:
-        python-ldap
-    mail:
-        mimetypes
-        #Figure out the actual package name
-        MIMEMultipart?
-        MIMEText?
-    file:
-        none
 
-Usage for the classes:
+#Usage:
 
     ldap:
         from myutil import myldap
