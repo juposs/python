@@ -1,10 +1,12 @@
 #!/usr/bin/python
-from myutil import file
+#from myutil import file
 import json
+import os
 
-file1 = file("../to-be_converted/sample-outputs/ceph-s.json")
-data = file1.read()
+#file1 = file("../to-be_converted/sample-outputs/ceph-s.json")
+#data = file1.read()
 
+data = os.popen("ceph -s -f json-pretty").read()
 jsonfile = json.loads(data)
 
 #Ceph_Space
@@ -20,7 +22,7 @@ tb_used = float(bytes_used)/(2**40)
 perc_used = (float(bytes_used)/float(bytes_total))*100
 tb_total = float(bytes_total)/(2**40)
 
-print "P Ceph_Space TB_used={0:.2f}|Percent_used={1:.2f};{2};{3} Currently {1:f}%% used ({0:.2f} TiB of {4:.2f} TiB)".format(tb_used,perc_used,space_warn,space_crit,tb_total)
+print "P Ceph_Space TB_used={0:.2f}|Percent_used={1:.2f};{2};{3} Currently {1:.2f}%% used ({0:.2f} TiB of {4:.2f} TiB)".format(tb_used,perc_used,space_warn,space_crit,tb_total)
 
 #Ceph_Degraded
 try:
@@ -103,10 +105,23 @@ write_mb_sec = float(write_bytes_sec)/(2**20)
 print "0 Ceph_Stats read_mb_sec={0:.2f}|write_mb_sec={1:.2f}|read_op_per_sec={2}|write_op_per_sec={3} Client IO/read: {0:.2f} MiB/s | Client IO/write: {1:.2f} MiB/s | OP/s Read: {2} | OP/s Write: {3}".format(read_mb_sec, write_mb_sec, read_op_per_sec, write_op_per_sec)
 
 #Ceph_Scrubbing
+for each in jsonfile["pgmap"]["pgs_by_state"]:
+    if each["state_name"] == "active+clean+scrubbing+deep":
+        deep_scrubbing_pg = each["count"]
+    else:
+        deep_scrubbing_pg = 0
+
+for each in jsonfile["pgmap"]["pgs_by_state"]:
+    if each["state_name"] == "active+clean+scrubbing":
+        scrubbing_pg = each["count"]
+    else:
+        scrubbing_pg = 0
+
+print "0 Ceph_Scrubbing deep_scrubbing_pg={0}|scrubbing_pg={1} Number of deep scrubbing PGs: {0} | Number of scubbing PGs: {1}".format(deep_scrubbing_pg, scrubbing_pg)
 
 #Ceph_Health
+
 
 # Create new checks Ceph_Misplaced and Ceph_Degraded, or just include them into Ceph_Health?
 # Old outputs
 #echo "$healthstatus Ceph_Health - $STATE"
-#echo "0 Ceph_Scrubbing deep_scrub=$deep_scrub|scrubbing=$scrub $scrubbing_info"
