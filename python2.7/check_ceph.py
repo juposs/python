@@ -76,7 +76,7 @@ except KeyError:
 
 recovering_mb_sec = float(recovering_bytes_per_sec)/(2**20)
 
-print "0 Ceph_Recovery recovering_mb_sec={0:.2f}|recovering_objects_per_sec={1}|recovering_keys_per_sec={2} Recovery IO: {0:.2f} MiB/s | Objects/s: {1} | Keys/s: {2}".format(recovering_mb_sec, recovering_objects_per_sec, recovering_keys_per_sec)
+print "0 Ceph_Recovery recovering_mb_sec={0:.2f}|recovering_objects_per_sec={1}|recovering_keys_per_sec={2}|misplaced_objects={3}|misplaced_ratio={4}|degraded_objects={5}|degraded_ratio={6} Recovery IO: {0:.2f} MiB/s | Objects/s: {1} | Keys/s: {2} | Misplaced objects: {3}; ratio: {4:.2f}% | Degraded objects: {5}; ratio: {6:.2f}%".format(recovering_mb_sec, recovering_objects_per_sec, recovering_keys_per_sec, misplaced_objects, misplaced_ratio, degraded_objects, degraded_ratio)
 
 #Ceph_Stats
 try:
@@ -119,9 +119,39 @@ for each in jsonfile["pgmap"]["pgs_by_state"]:
 
 print "0 Ceph_Scrubbing deep_scrubbing_pg={0}|scrubbing_pg={1} Number of deep scrubbing PGs: {0} | Number of scubbing PGs: {1}".format(deep_scrubbing_pg, scrubbing_pg)
 
+# OSDs
+num_osds = jsonfile["osdmap"]["osdmap"]["num_osds"]
+num_up_osds = jsonfile["osdmap"]["osdmap"]["num_up_osds"]
+num_in_osds = jsonfile["osdmap"]["osdmap"]["num_in_osds"]
+full_osds = jsonfile["osdmap"]["osdmap"]["full"] # true/false?
+nearfull_osds = jsonfile["osdmap"]["osdmap"]["nearfull"] # true/false?
+
+
 #Ceph_Health
+pgstates = "PGs by state: "
+for dic in jsonfile["pgmap"]["pgs_by_state"]:
+    pgstates = pgstates + "{0}: {1} | ".format(dic["state_name"], dic["count"])
 
+try:
+    health_status = jsonfile["health"]["status"]
+except KeyError:
+    health_status = jsonfile["health"]["overall_status"]
 
-# Create new checks Ceph_Misplaced and Ceph_Degraded, or just include them into Ceph_Health?
-# Old outputs
-#echo "$healthstatus Ceph_Health - $STATE"
+try:
+    health_summary = jsonfile["helath"]["summary"]
+except KeyError:
+    health_summary = []
+
+health_summary_parsed = ""
+if len(health_summary) < 1:
+    health_summary_parsed = "OK "
+else:
+    for each in health_summary:
+        health_summary_parsed = health_summary_parsed + "{0}: {1} | ".format(each["severity"], each["summary"])
+
+if health_status != "HEALTH_OK" or int(num_osds) != int(num_up_osds) or int(num_osds) != int(num_in_osds):
+        status = 2
+else:
+        status = 0
+
+print "{0} Ceph_Health num_osds={1}|num_up_osds={2}|num_in_osds={3} Health-summary: {4}| {5}".format(status, num_osds, num_up_osds, num_in_osds, health_summary_parsed, pgstates)
