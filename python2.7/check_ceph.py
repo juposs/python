@@ -144,7 +144,7 @@ except KeyError:
 
 health_summary_parsed = ""
 if len(health_summary) < 1:
-    health_summary_parsed = "OK "
+    health_summary_parsed = "{0} ".format(health_status)
 else:
     for each in health_summary:
         health_summary_parsed = health_summary_parsed + "{0}: {1} | ".format(each["severity"], each["summary"])
