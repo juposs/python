@@ -138,7 +138,7 @@ except KeyError:
     health_status = jsonfile["health"]["overall_status"]
 
 try:
-    health_summary = jsonfile["helath"]["summary"]
+    health_summary = jsonfile["health"]["summary"]
 except KeyError:
     health_summary = []
 
