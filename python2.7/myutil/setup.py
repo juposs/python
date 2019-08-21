@@ -6,9 +6,9 @@ requires = ['python-ldap']
 
 setuptools.setup(
      name='myutil.py',
-     version='1.0',
+     version='1.1',
      py_modules=['myutil'],
-     author="Julian Poss",
+     uthor="Julian Poss",
      author_email="john.doe@gmail.com",
      description="A python utility package",
      long_description="A python utility package for querying ldap, sending mails and working with files",

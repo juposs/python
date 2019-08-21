@@ -1,9 +1,8 @@
 Metadata-Version: 2.1
 Name: myutil.py
-Version: 1.0
+Version: 1.1
 Summary: A python utility package
 Home-page: https://github.com/juposs/python/tree/master/python2.7/myutil
-Author: Julian Poss
 Author-email: john.doe@gmail.com
 License: UNKNOWN
 Description: A python utility package for querying ldap, sending mails and working with files

@@ -105,15 +105,10 @@ class myldap:
         l.unbind_s()
 
 class mail:
-    def __init__(self, subject, text, receipient, sender=None, server=None, port=None, sendfile=None, filepath=None):
+    def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None):
         """ Sort out the given variables and if neccessary fill in default variables
-
-        Usage:
-        Modify defaults in the Class and use the minumum parameters:
-        instance = mail(subject, text, receipient)
-
-        or give all parameters:
-        instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
+            or give all parameters:
+            instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
         """
 
         self.server = server if server is not None else default_mail_server
@@ -122,39 +117,50 @@ class mail:
         self.filepath = filepath if filepath is not None else default_filepath
         self.sender = sender if sender is not None else default_sender
 
-        self.subject = subject
-        self.text = text
-        self.receipient = receipient
+        self.server = smtplib.SMTP(self.server, self.port)
+        self.msg = MIMEMultipart()
+        self.msg["From"] = self.sender
 
-    def send(self):
-        """Send the mail
-        """
-
-        server = smtplib.SMTP(self.server, self.port)
-        msg = MIMEMultipart()
-        msg["From"] = self.sender
-        msg["To"] = self.receipient
-        msg["Subject"]  = self.subject
-
-        body = self.text
-        msg.attach(MIMEText(body, "plain"))
-
-        # Check if user wants to send a file, if so read the specified file and attach it to the message
+        # Check if user wants to send a file, if so read the specified file
         if self.sendfile.lower() == "true":
             fp = open(self.filepath)
             attachment = MIMEText(fp.read())
             fp.close()
+            # Attach the file to the message
+            self.msg.attach(attachment)
 
-            msg.attach(attachment)
+    def send(self, subject, text, receipient):
+        """ Send the mail
+            Usage:
+            instance.send(subject, text, [receipient1, receipent2])
+        """
 
-        message = msg.as_string()
+        #.subject = subject
+        #self.text = text
+        #self.receipient = receipient
 
-        # Try to send mail
-        try:
-            server.sendmail(self.sender, self.receipient, message)
-            print "Successfully send mail(s)"
-        except:
-            print "Error: unable to send mail"
+        # Set subject to mail
+        self.msg["Subject"]  = subject
+
+        # Cycle through list of receipients
+        for email in receipient:
+            # Set receipient in email header
+            self.msg["To"] = self.email
+
+            # Set actual text of the email
+            #body = text
+            self.msg.attach(MIMEText(text, "plain"))
+
+            # Built the massage object
+            message = self.msg.as_string()
+
+            # Try to send mail
+            for email in self.receipient:
+                try:
+                    self.server.sendmail(self.sender, email, message)
+                    print "Success: Sent email to: "+email
+                except:
+                    print "Error: Unable to send mail to: "+email
 
 class file:
     def __init__(self, path, data=None):
