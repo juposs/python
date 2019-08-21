@@ -71,4 +71,5 @@ TODOs:
 - LDAP: Modify so that you just setup server etc. when calling the init method, and specifying all the
   non-persistent stuff at the query method (similar to mail)
 - Include logging instead / in addition to priting errors to std out
+- Split default variables to a seperate file
 - Maybe add logging class (logzero)
