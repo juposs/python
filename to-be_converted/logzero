@@ -1,0 +1,25 @@
+# Install the module
+pip install -U logzero
+
+# Import the needed module
+from logzero import logger
+
+# Specify logfile
+logfile_path="/root/pingtest.log"
+
+# Setup formatting, logfile rotation and disable logging to Std err
+def create_logfile(logfile_path):
+    logzero.logfile(logfile_path, backupCount=10, maxBytes=0, disableStderrLogger=True)
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s');
+    logzero.formatter(formatter)
+
+# Create the logger object
+create_logfile(logfile_path)
+
+# examples:
+logger.info("Info")
+logger.warning("Warning")
+logger.error("Error")
+logger.debug("Debug")
+
+# see: https://logzero.readthedocs.io/en/latest/

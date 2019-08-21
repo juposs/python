@@ -107,11 +107,8 @@ class myldap:
 class mail:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None):
         """ Sort out the given variables and if neccessary fill in default variables
-
-
-
-        or give all parameters:
-        instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
+            or give all parameters:
+            instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
         """
 
         self.server = server if server is not None else default_mail_server
@@ -133,7 +130,7 @@ class mail:
             self.msg.attach(attachment)
 
     def send(self, subject, text, receipient):
-        """Send the mail
+        """ Send the mail
             Usage:
             instance.send(subject, text, [receipient1, receipent2])
         """

@@ -43,14 +43,14 @@ Defaults can be modified in $HOME/.local/lib/python2.7/site-packages/myutil.py
         from myutil import mail
 
         Modify defaults and use the minumum parameters:
-        instance = mail(subject, text, receipient)
+        instance = mail()
 
         or give all parameters:
-        instance = mail("ExampleSubject", "example text", "john.doe@example.org", "no-rely@example.org", "mailserver.example.org", "25", true, "/path/to/myfile.txt")
-        instance = mail("ExampleSubject", "example text", "john.doe@example.org", "no-rely@example.org", "mailserver.example.org", "25", false)
+        instance = mail("no-rely@example.org", "mailserver.example.org", "25", true, "/path/to/myfile.txt")
+        instance = mail("no-rely@example.org", "mailserver.example.org", "25", false)
 
         then send the mail with that instance:
-        instance.send()
+        instance.send(subject, text, [receipient1, receipient2])
 
     file:
         from myutil import file
@@ -61,6 +61,14 @@ Defaults can be modified in $HOME/.local/lib/python2.7/site-packages/myutil.py
         With data, for instance if you want to write/append/overwrite a file
         instance = file("/path/to/file", "your data")
 
-        instance.read()
+        instance.overwrite()
 
 myutil is still experimental and needs to be tested!
+
+TODOs:
+- FILE: Modify so that you call the init method with just the path and all the methods where you need to,
+  also the data (for instance: overwrite)
+- LDAP: Modify so that you just setup server etc. when calling the init method, and specifying all the
+  non-persistent stuff at the query method (similar to mail)
+- Include logging instead / in addition to priting errors to std out
+(?) Maybe add logging class (logzero)
