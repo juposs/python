@@ -1,19 +1,23 @@
 #!/usr/bin/python3
-
 from requests import get
 import json
-import sys
+from random import choice
 
 '''API's:
+    Jokes:
     https://sv443.net/jokeapi/category/Any
     https://icanhazdadjoke.com
     https://fortuneapi.herokuapp.com
     https://geek-jokes.sameerkumar.website/api
 
+    Quotes:
     https://corporatebs-generator.sameerkumar.website
     https://ron-swanson-quotes.herokuapp.com/v2/quotes
     https://api.tronalddump.io/random/quote
 '''
+# TODO: Randomizer
+joke_choice = [sv443, sv443_computers, icanhazdad, fortune, geek]
+quotes = ["bs_generator", "ronswanson", "trump"]
 
 def sv443(category=None):
     if category == None:
@@ -40,11 +44,14 @@ def sv443_computers():
 
 def icanhazdad():
     headers = {'Accept': 'text/plain'}
-    # TODO broken caracters still needs fixing
-    joke = get('https://icanhazdadjoke.com/j/ea2TnGBXnrc', headers=headers)
+    joke = get('https://icanhazdadjoke.com/', headers=headers)
     if joke.status_code == 200:
+        # Fix some broken characters
         joke = joke.text
-        joke = joke.replace("\’", "\'")
+        joke = joke.replace("â\x80\x93", "-")
+        joke = joke.replace("â\x80\x99", "'")
+        joke = joke.replace("â", "\"")
+        joke = joke.replace("â", "\"")
         print(joke)
         return None
 
@@ -91,5 +98,3 @@ def trump():
     if quota.status_code == 200:
         print(json.loads(quota.text)["value"])
         return None
-
-icanhazdad()
