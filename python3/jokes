@@ -1,0 +1,95 @@
+#!/usr/bin/python3
+
+from requests import get
+import json
+import sys
+
+'''API's:
+    https://sv443.net/jokeapi/category/Any
+    https://icanhazdadjoke.com
+    https://fortuneapi.herokuapp.com
+    https://geek-jokes.sameerkumar.website/api
+
+    https://corporatebs-generator.sameerkumar.website
+    https://ron-swanson-quotes.herokuapp.com/v2/quotes
+    https://api.tronalddump.io/random/quote
+'''
+
+def sv443(category=None):
+    if category == None:
+        category = "Any"
+    else:
+        category = category
+
+    joke = get('https://sv443.net/jokeapi/category/'+category)
+    if joke.status_code == 200:
+        category = json.loads(joke.text)["category"]
+        type = json.loads(joke.text)["type"]
+
+        if type == "single":
+            answer = json.loads(joke.text)["joke"]
+        elif type == "twopart":
+            answer = json.loads(joke.text)["setup"]
+            answer = answer + " - " + json.loads(joke.text)["delivery"]
+
+        print(answer)
+        return None
+
+def sv443_computers():
+    sv443("Programming")
+
+def icanhazdad():
+    headers = {'Accept': 'text/plain'}
+    # TODO broken caracters still needs fixing
+    joke = get('https://icanhazdadjoke.com/j/ea2TnGBXnrc', headers=headers)
+    if joke.status_code == 200:
+        joke = joke.text
+        joke = joke.replace("\’", "\'")
+        print(joke)
+        return None
+
+def fortune():
+    headers = {'Accept': 'text/plain'}
+    joke = get('https://fortuneapi.herokuapp.com')
+    if joke.status_code == 200:
+        if joke.text.endswith("\n"):
+            joke = joke.text[1:-2]
+        else:
+            joke = joke.text
+        if joke.startswith("\""):
+            joke = joke[1:]
+        if joke.endswith("\""):
+            joke = joke[:-1]
+        joke = joke.replace("\\n", "\n")
+        joke = joke.replace("\\t", "\t")
+        joke = joke.replace("\\r", "\r")
+        joke = joke.replace('\\"', "\"")
+        print(joke.strip())
+    return None
+
+def geek():
+    joke = get('https://geek-jokes.sameerkumar.website/api')
+    if joke.status_code == 200:
+        print(joke.text[1:-2])
+        return None
+
+def bs_generator():
+    joke = get('https://corporatebs-generator.sameerkumar.website')
+    if joke.status_code == 200:
+        joke = json.loads(joke.text)["phrase"]
+        print(joke)
+        return None
+
+def ronswanson():
+    quota = get('https://ron-swanson-quotes.herokuapp.com/v2/quotes')
+    if quota.status_code == 200:
+        print(quota.text[1:-1][1:-1])
+        return None
+
+def trump():
+    quota = get('https://api.tronalddump.io/random/quote')
+    if quota.status_code == 200:
+        print(json.loads(quota.text)["value"])
+        return None
+
+icanhazdad()
