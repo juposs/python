@@ -119,11 +119,11 @@ class mail:
         self.sender = sender if sender is not None else default_sender
         self.password = password if password is not None else default_mail_password
 
-        self.server = smtplib.SMTP(self.server, self.port)
+        self.server = smtplib.SMTP_SSL(self.server, self.port)
         self.msg = MIMEMultipart()
         # If a password is given, use it to login to the mailserver
         if self.password != None:
-            self.server.starttls()
+            #self.server.starttls()
             self.server.login(self.sender, self.login)
 
         self.msg["From"] = self.sender
@@ -165,6 +165,7 @@ class mail:
             for email in self.receipient:
                 try:
                     self.server.send_message(self.sender, email, message)
+                    #self.server.sendmail("from@"+self.sender, "to@"+email, message)
                     self.server.quit()
                     print("Success: Sent email to: "+email)
                 except:
