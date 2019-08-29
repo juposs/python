@@ -109,7 +109,7 @@ class mail:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
-            instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
+            instance = mail(sender, mailserver, port, true, "/path/to/file", password)
         """
 
         self.server = server if server is not None else default_mail_server
@@ -117,7 +117,7 @@ class mail:
         self.sendfile = sendfile if sendfile is not None else default_sendfile
         self.filepath = filepath if filepath is not None else default_filepath
         self.sender = sender if sender is not None else default_sender
-        self.password = password if password is not None esle default_mail_password
+        self.password = password if password is not None else default_mail_password
 
         self.server = smtplib.SMTP(self.server, self.port)
         self.msg = MIMEMultipart()
