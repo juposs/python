@@ -18,6 +18,7 @@ default_mail_port="25"
 default_sendfile="false"
 default_filepath="None"
 default_sender="no-reply@example.org"
+default_mail_password="None"
 
 class myldap:
     def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
@@ -105,7 +106,7 @@ class myldap:
         l.unbind_s()
 
 class mail:
-    def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None):
+    def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
             instance = mail(subject, text, receipient, sender, mailserver, port, true, "/path/to/file")
@@ -116,9 +117,15 @@ class mail:
         self.sendfile = sendfile if sendfile is not None else default_sendfile
         self.filepath = filepath if filepath is not None else default_filepath
         self.sender = sender if sender is not None else default_sender
+        self.password = password if password is not None esle default_mail_password
 
         self.server = smtplib.SMTP(self.server, self.port)
         self.msg = MIMEMultipart()
+        # If a password is given, use it to login to the mailserver
+        if self.password != None:
+            server.starttls()
+            server.login(self.sender, self.login)
+
         self.msg["From"] = self.sender
 
         # Check if user wants to send a file, if so read the specified file
@@ -158,6 +165,7 @@ class mail:
             for email in self.receipient:
                 try:
                     self.server.sendmail(self.sender, email, message)
+                    self.server.quit()
                     print "Success: Sent email to: "+email
                 except:
                     print "Error: Unable to send mail to: "+email
