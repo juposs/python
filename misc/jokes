@@ -3,6 +3,7 @@ from requests import get
 import json
 from random import choice
 from myutil import mail
+import sys
 
 # TODO: Change Variables for sending the mail:
 sender = "whaterver@domain.com"
@@ -51,7 +52,8 @@ def sv443(category=None):
         sv443(category)
 
 def sv443_computers():
-    sv443("Programming")
+    return sv443("Programming") + " - Programming"
+
 
 def icanhazdad():
     headers = {'Accept': 'text/plain'}
@@ -125,9 +127,8 @@ def random_choice():
     return text
 
 text = random_choice()
-
 # Depending on what you choosed redarding default vars above
-# instance = mail(sender, mailserver, port, password=mail_password)
-
-instance = mail()
-instance.send(subject, text, receipient)
+# email = mail.setup(sender, mailserver, port, password=mail_password)
+# OR this
+email = mail.setup()
+email.send(subject, text, receipient)
