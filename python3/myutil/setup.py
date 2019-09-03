@@ -5,14 +5,18 @@ import setuptools
 requires = ['python3-ldap']
 
 setuptools.setup(
-     name='myutil.py',
-     version='2.2',
+     name='myutil',
+     version='2.3',
      py_modules=['myutil', 'myutil_defaults'],
+     #package_dir={"":"."},
+     download_url="",
      author="Julian Poss",
      author_email="john.doe@gmail.com",
+     maintainer="Julian Poss",
+     maintainer_email="john.doe@gmail.com",
      description="A python utility package",
      long_description="A python utility package for querying ldap, sending mails and working with files",
-     long_description_content_type="text/markdown",
+     #long_description_content_type="text/markdown",
      url="https://github.com/juposs/python/tree/master/python3/myutil",
      packages=setuptools.find_packages(),
      classifiers=[
