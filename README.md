@@ -14,13 +14,18 @@ Updates on further steps will most likely follow.
 
 # How to install?
 apt install python-pip
-
 wget https://github.com/juposs/python/tree/master/python2.7/myutil/dist/myutil.py-1.0-py2-none-any.whl
-
 pip install ./myutil.py-1.0-py2-none-any.whl --user
 
+apt install python3-pip
+wget https://github.com/juposs/python/blob/master/python3/myutil/dist/myutil.py-2.0-py3-none-any.whl
+pip3 install ./myutil.py-1.0-py2-none-any.whl --user
+
 # Defaults
-Defaults can be modified in $HOME/.local/lib/python2.7/site-packages/myutil.py
+Defaults can be modified in
+$HOME/.local/lib/python2.7/site-packages/myutil.py
+
+$HOME/.local/lib/python3.6/site-packages/myutil.py
 
 # Usage:
 
@@ -71,5 +76,5 @@ TODOs:
 - LDAP: Modify so that you just setup server etc. when calling the init method, and specifying all the
   non-persistent stuff at the query method (similar to mail)
 - Include logging instead / in addition to priting errors to std out
+- Maybe also add logging class (logzero)
 - Split default variables to a seperate file
-- Maybe add logging class (logzero)
