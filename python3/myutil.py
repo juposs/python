@@ -124,7 +124,8 @@ class mail:
         # If a password is given, use it to login to the mailserver
         if self.password != None:
             self.server.starttls()
-            self.server.login(self.sender, self.login)
+            self.server.ehlo()
+            self.server.login(self.sender, self.password)
 
         self.msg["From"] = self.sender
 
@@ -149,26 +150,40 @@ class mail:
         # Set subject to mail
         self.msg["Subject"]  = subject
 
-        # Cycle through list of receipients
-        for email in receipient:
+        # Set actual text of the email
+        #body = text
+        self.msg.attach(MIMEText(text, "plain"))
+
+        # If given receipients is a list object cycle through list of receipients
+        if type(receipient) == list:
+            for email in receipient:
+                # Set receipient in email header
+                self.msg["To"] = email
+                # Built the massage object
+                message = self.msg.as_string()
+
+                # Try to send mail
+                try:
+                    self.server.sendmail(self.sender, email, message)
+                    self.server.quit()
+                    print("Success: Sent email \""+subject+"\" from "+self.sender+" to: "+email)
+                except:
+                    print("Error: Unable to send email \""+subject+"\" from "+self.sender+" to: "+email)
+        # If given receipients is not a list, just try to send the mail
+        else:
+            email = receipient
             # Set receipient in email header
-            self.msg["To"] = self.email
-
-            # Set actual text of the email
-            #body = text
-            self.msg.attach(MIMEText(text, "plain"))
-
+            self.msg["To"] = email
             # Built the massage object
             message = self.msg.as_string()
 
-            # Try to send mail
-            for email in self.receipient:
-                try:
-                    self.server.send_message(self.sender, email, message)
-                    self.server.quit()
-                    print("Success: Sent email to: "+email)
-                except:
-                    print("Error: Unable to send mail to: "+email)
+            try:
+                self.server.sendmail(self.sender, email, message)
+                self.server.quit()
+                print("Success: Sent email \""+subject+"\" from "+self.sender+" to: "+email)
+            except:
+                print("Error: Unable to send email \""+subject+"\" from "+self.sender+" to: "+email)
+
 
 class file:
     def __init__(self, path, data=None):
