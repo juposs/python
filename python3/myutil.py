@@ -119,7 +119,7 @@ class mail:
         self.sender = sender if sender is not None else default_sender
         self.password = password if password is not None else default_mail_password
 
-        self.server = smtplib.SMTP(self.server, self.port)
+        self.server = smtplib.SMTP_SSL(self.server, self.port)
         self.msg = MIMEMultipart()
         # If a password is given, use it to login to the mailserver
         if self.password != None:
