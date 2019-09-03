@@ -10,3 +10,8 @@ default_sendfile="false"
 default_filepath="None"
 default_sender="no-reply@example.org"
 default_mail_password="None"
+
+#logger default_sender
+default_logfile_path="./myutil.log"
+default_maxBytes=0
+default_backupCount=10

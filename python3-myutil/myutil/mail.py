@@ -12,7 +12,7 @@ class setup:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
-            instance = mail(sender, mailserver, port, true, "/path/to/file", password)
+            instance = mail.setup(sender, mailserver, port, true, "/path/to/file", password)
         """
 
         self.server = server if server is not None else myutil_defaults.default_mail_server
