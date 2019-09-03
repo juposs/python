@@ -78,3 +78,4 @@ TODOs:
 - Include logging instead / in addition to priting errors to std out
 - Maybe also add logging class (logzero)
 - Split default variables to a seperate file
+- python3/jokes still has a bug..
