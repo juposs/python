@@ -23,6 +23,7 @@ setuptools.setup(
      url="https://github.com/juposs/python/tree/master/python3/myutil",
      #packages=setuptools.find_packages(),
      classifiers=[
+         "Programming Language :: Python :: 3.5",
          "Programming Language :: Python :: 3.6",
          "License :: OSI Approved :: undefined",
          "Operating System :: OS Independent",

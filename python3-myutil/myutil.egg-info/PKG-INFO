@@ -10,6 +10,7 @@ Maintainer-email: john.doe@gmail.com
 License: UNKNOWN
 Description: A python utility package for querying ldap, sending mails and working with files
 Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
 Classifier: License :: OSI Approved :: undefined
 Classifier: Operating System :: OS Independent
