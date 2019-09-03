@@ -12,13 +12,13 @@ Defaults can be modified in $HOME/.local/lib/python3.6/site-packages/myutil.py
 # Usage:
 
     ldap:
-        from myutil import myldap
+        from myutil import ldap
 
         Modify defaults and use the minumum parameters:
-        instance = myldap("binduser@example.org", "strongpass", "john.doe@example.org")
+        instance = ldap.myldap("binduser@example.org", "strongpass", "john.doe@example.org")
 
         or give all parameters:
-        instance = myldap("binduser@example.org", "strongpass", "john.doe@example.org", "userPrincipalName", "OU=OrgUnit,DC=example,DC=org", "server.example.org")
+        instance = ldap.myldap("binduser@example.org", "strongpass", "john.doe@example.org", "userPrincipalName", "OU=OrgUnit,DC=example,DC=org", "server.example.org")
 
         then run query with that instance:
         result = instance.query("pwdlastset")
@@ -30,11 +30,11 @@ Defaults can be modified in $HOME/.local/lib/python3.6/site-packages/myutil.py
         from myutil import mail
 
         Modify defaults and use the minumum parameters:
-        instance = mail()
+        instance = mail.mail()
 
         or give all parameters:
-        instance = mail("no-rely@example.org", "mailserver.example.org", "25", true, "/path/to/myfile.txt")
-        instance = mail("no-rely@example.org", "mailserver.example.org", "25", false)
+        instance = mail.mail("no-rely@example.org", "mailserver.example.org", "25", true, "/path/to/myfile.txt")
+        instance = mail.mail("no-rely@example.org", "mailserver.example.org", "25", false)
 
         then send the mail with that instance:
         instance.send(subject, text, [receipient1, receipient2])
@@ -43,9 +43,9 @@ Defaults can be modified in $HOME/.local/lib/python3.6/site-packages/myutil.py
         from myutil import file
 
         Without data, for instance you just want to read/create a file
-        instance = file("path/to/file.txt")
+        instance = file.file("path/to/file.txt")
 
         With data, for instance if you want to write/append/overwrite a file
-        instance = file("/path/to/file", "your data")
+        instance = file.file("/path/to/file", "your data")
 
         instance.overwrite()
