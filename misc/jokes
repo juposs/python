@@ -3,6 +3,7 @@ from requests import get
 import json
 from random import choice
 from myutil import mail
+import sys
 
 # TODO: Change Variables for sending the mail:
 sender = "whaterver@domain.com"
