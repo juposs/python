@@ -2,12 +2,12 @@
 
 apt install python3-pip
 
-wget https://github.com/juposs/python/blob/master/python3-myutil/dist/myutil-2.4-py3-none-any.whl
+wget https://github.com/juposs/python/raw/master/python3-myutil/dist/myutil-2.6-py3-none-any.whl
 
 pip3 install ./myutil.py-2.4-py2-none-any.whl --user
 
 # Defaults
-Defaults can be modified in $HOME/.local/lib/python3.6/site-packages/myutil.py
+Defaults can be modified in $HOME/.local/lib/python3.X/site-packages/myutil/defaults.py
 
 # Usage:
 
@@ -37,7 +37,7 @@ Defaults can be modified in $HOME/.local/lib/python3.6/site-packages/myutil.py
         instance = mail.setup("no-rely@example.org", "mailserver.example.org", "25", false)
 
         then send the mail with that instance:
-        instance.send(subject, text, [receipient1, receipient2])
+        instance.send(subject, text, receipient1 [, receipient2])
 
     file:
         from myutil import file
