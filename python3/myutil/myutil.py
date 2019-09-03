@@ -7,18 +7,22 @@ import mimetypes
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+import myutil-defaults
+
+
+
 #myldap defaults
-default_match_attribute="userPrincipalName"
-default_dn="OU=OrgUnit,DC=example,DC=org"
-default_ldap_server="example.org"
+default_match_attribute = myutil-defaults.default_match_attribute
+default_dn = myutil-defaults.default_dn
+default_ldap_server = myutil-defaults.default_ldap_server
 
 #mail defaults
-default_mail_server="mailserver.example.org"
-default_mail_port="25"
-default_sendfile="false"
-default_filepath="None"
-default_sender="no-reply@example.org"
-default_mail_password="None"
+default_mail_server = myutil-defaults.default_mail_server
+default_mail_port = myutil-defaults.default_mail_port
+default_sendfile = myutil-defaults.default_sendfile
+default_filepath = myutil-defaults.default_filepath
+default_sender = myutil-defaults.default_sender
+default_mail_password = myutil-defaults.default_mail_password
 
 class myldap:
     def __init__(self, user, password, dn=None, server=None):
@@ -47,7 +51,7 @@ class myldap:
         Usage:
         result = instance.query(searchvalue, returnattribute, match_attribute=None)
 
-        "match_value" is the value to match to the ldap object, usually "firstname.lastname@example.org"
+        "match_value" is  the value to match to the ldap object, usually "firstname.lastname@example.org"
         "return_attribute" is the value you want to get from the ldap object, for instance "pwdlastset"
         "match_attribute" is the ldap attribute to match the "match_value" to, defaults to "userPrincipalName"
         """
