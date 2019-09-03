@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 #myldap defaults
-default_searchfilter="userPrincipalName"
+default_match_attribute="userPrincipalName"
 default_dn="OU=OrgUnit,DC=example,DC=org"
 default_ldap_server="example.org"
 
@@ -21,43 +21,43 @@ default_sender="no-reply@example.org"
 default_mail_password="None"
 
 class myldap:
-    def __init__(self, user, password, searchvalue, searchfilter=None, dn=None, server=None):
+    def __init__(self, user, password, dn=None, server=None):
         """ Sort out the given variables and if neccessary fill in default variables
 
         Usage:
         Modify defaults in the class and use the minumum parameters:
-        instance = myldap(username, password, searchvalue)
+        instance = myldap(username, password)
 
         or give all parameters:
-        instance = myldap(username, password, searchvalue, searchfilter, dn, server)
+        instance = myldap(username, password, dn, server)
 
-        "searchvalue" is the value to match to the ldap object, usually "firstname.lastname@example.org"
-        "searchfilter" is the ldap attribute to match the searchvalue to, usually "userPrincipalName"
         "dn" is the tree you want to start the search in, usually similar to "OU=OrgUnit,DC=example,DC=org"
         """
 
-        self.searchfilter = searchfilter if searchfilter is not None else default_searchfilter
         self.dn = dn if dn is not None else default_dn
         self.server = server if server is not None else default_ldap_server
 
         self.user = user
         self.password = password
-        self.searchvalue = searchvalue
 
-    def query(self, attr):
+
+    def query(self, match_value, return_attribute, match_attribute=None):
         """Do the ldap query with the given variables
 
         Usage:
-        result = instance.query(attribute)
+        result = instance.query(searchvalue, returnattribute, match_attribute=None)
 
-        "attribute" is the value you want to get from the ldap object, for instance "pwdlastset"
+        "match_value" is the value to match to the ldap object, usually "firstname.lastname@example.org"
+        "return_attribute" is the value you want to get from the ldap object, for instance "pwdlastset"
+        "match_attribute" is the ldap attribute to match the "match_value" to, defaults to "userPrincipalName"
         """
 
-        self.attr = attr
+        self.match_attribute = match_attribute if match_attribute is not None else default_match_attribute
+
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)
-        searchFilter = self.searchfilter+"="+self.searchvalue
-        searchAttribute = [self.attr]
+        searchFilter = self.match_attribute+"="+match_value
+        searchAttribute = [return_attribute]
 
         searchScope = ldap.SCOPE_SUBTREE
         #Bind to the server
@@ -96,7 +96,7 @@ class myldap:
                     ldap_value = value_parsed[searchAttribute[0]]
 
                     if ldap_value[0] == "":
-                        query()
+                        query(match_value, return_attribute, match_attribute)
                     else:
                         return ldap_value[0]
                 else:
@@ -141,6 +141,8 @@ class mail:
         """ Send the mail
             Usage:
             instance.send(subject, text, [receipient1, receipent2])
+            Or:
+            instance.send(subject, text, receipient)
         """
 
         #.subject = subject

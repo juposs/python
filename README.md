@@ -71,11 +71,11 @@ $HOME/.local/lib/python3.6/site-packages/myutil.py
 myutil is still experimental and needs to be tested!
 
 TODOs:
-- FILE: Modify so that you call the init method with just the path and all the methods where you need to,
-  also the data (for instance: overwrite)
-- LDAP: Modify so that you just setup server etc. when calling the init method, and specifying all the
+1. FILE: Modify so that you call the init method with just the path and all the methods where you need to,
+   also the data (for instance: overwrite)
+2. LDAP: Modify so that you just setup server etc. when calling the init method, and specifying all the
   non-persistent stuff at the query method (similar to mail)
-- Include logging instead / in addition to priting errors to std out
-- Maybe also add logging class (logzero)
-- Split default variables to a seperate file
-- python3/jokes still has a bug..
+3. Include logging instead / in addition to priting errors to std out
+4. Maybe also add logging class (logzero)
+5. Split default variables to a seperate file
+6. python3/jokes still has a bug..
