@@ -4,6 +4,20 @@ import json
 from random import choice
 from myutil import mail
 
+# TODO: Change Variables for sending the mail:
+sender = "whaterver@domain.com"
+mailserver = "yourmailserver.com"
+port = 25
+# Only needed if your mailserver need user authentication
+mail_password = "your secure mail password"
+subject = "Your mail subject"
+receipient = "Your mail receipient"
+
+# OR use default vars in $HOME/.local/lib/python3.6/site-packages/myutil_defaults.py
+# and just specify this
+subject = "Your mail subject"
+receipient = "Your mail receipient"
+
 '''API's:
     Jokes:
     https://sv443.net/jokeapi/category/Any
@@ -16,14 +30,6 @@ from myutil import mail
     https://ron-swanson-quotes.herokuapp.com/v2/quotes
     https://api.tronalddump.io/random/quote
 '''
-# TODO: Change Variables for sending the mail:
-sender = "whaterver@domain.com"
-mailserver = "yourmailserver.com"
-port = 25
-# Only needed if your mailserver need user authentication
-mail_password = "your secure mail password"
-subject = "Your mail subject"
-receipient = "Your mail receipient"
 
 def sv443(category=None):
     if category == None:
@@ -57,6 +63,7 @@ def icanhazdad():
         joke = joke.replace("â\x80\x99", "'")
         joke = joke.replace("â", "\"")
         joke = joke.replace("â", "\"")
+        joke = joke.replace("â¦", "...")
         return joke + " - Dad Jokes"
     else:
         icanhazdad()
@@ -119,5 +126,8 @@ def random_choice():
 
 text = random_choice()
 
-instance = mail(sender, mailserver, port, password=mail_password)
+# Depending on what you choosed redarding default vars above
+# instance = mail(sender, mailserver, port, password=mail_password)
+
+instance = mail()
 instance.send(subject, text, receipient)
