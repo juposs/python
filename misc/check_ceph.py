@@ -1,10 +1,6 @@
 #!/usr/bin/python
-#from myutil import file
 import json
 import os
-
-#file1 = file("../to-be_converted/sample-outputs/ceph-s.json")
-#data = file1.read()
 
 data = os.popen("ceph -s -f json-pretty").read()
 jsonfile = json.loads(data)
@@ -41,6 +37,7 @@ except KeyError:
     degraded_ratio = 0
 
 #print "{0} {1} {2}".format(degraded_objects, degraded_total, degraded_ratio)
+# Already covered in Ceph_Recovery
 
 #Ceph_Misplaced
 try:
