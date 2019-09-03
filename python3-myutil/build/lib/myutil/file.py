@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
 
-class file:
+class setup:
     def __init__(self, path, data=None):
         """Sort out path/filename.txt and data that is probalby written
 

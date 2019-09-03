@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 from myutil import defaults as myutil_defaults
 
-class mail:
+class setup:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:

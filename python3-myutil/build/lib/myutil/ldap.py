@@ -4,7 +4,7 @@ import ldap, sys, os
 
 from myutil import defaults as myutil_defaults
 
-class myldap:
+class setup:
     def __init__(self, user, password, dn=None, server=None):
         """ Sort out the given variables and if neccessary fill in default variables
 
