@@ -166,9 +166,9 @@ class mail:
                 try:
                     self.server.sendmail(self.sender, email, message)
                     self.server.quit()
-                    print("Success: Sent email \""+subject+"\" from "+self.sender+" to: "+email)
+                    print("Success: Sent email \""+subject+"\" from \""+self.sender+"\" to \""+email+"\"")
                 except:
-                    print("Error: Unable to send email \""+subject+"\" from "+self.sender+" to: "+email)
+                    print("Error: Unable to send email \""+subject+"\" from \""+self.sender+"\" to \""+email+"\"")
         # If given receipients is not a list, just try to send the mail
         else:
             email = receipient
@@ -180,9 +180,9 @@ class mail:
             try:
                 self.server.sendmail(self.sender, email, message)
                 self.server.quit()
-                print("Success: Sent email \""+subject+"\" from "+self.sender+" to: "+email)
+                print("Success: Sent email \""+subject+"\" from \""+self.sender+"\" to \""+email+"\"")
             except:
-                print("Error: Unable to send email \""+subject+"\" from "+self.sender+" to: "+email)
+                print("Error: Unable to send email \""+subject+"\" from \""+self.sender+"\" to \""+email+"\"")
 
 
 class file:
