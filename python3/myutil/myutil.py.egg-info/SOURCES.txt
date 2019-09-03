@@ -1,4 +1,5 @@
 myutil.py
+myutil_defaults.py
 setup.py
 myutil.py.egg-info/PKG-INFO
 myutil.py.egg-info/SOURCES.txt

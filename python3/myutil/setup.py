@@ -6,8 +6,8 @@ requires = ['python3-ldap']
 
 setuptools.setup(
      name='myutil.py',
-     version='2.1',
-     py_modules=['myutil', 'myutil-defaults'],
+     version='2.2',
+     py_modules=['myutil', 'myutil_defaults'],
      author="Julian Poss",
      author_email="john.doe@gmail.com",
      description="A python utility package",
