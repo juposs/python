@@ -37,7 +37,7 @@ Defaults can be modified in $HOME/.local/lib/python3.X/site-packages/myutil/defa
         instance = mail.setup("no-rely@example.org", "mailserver.example.org", "25", false)
 
         then send the mail with that instance:
-        instance.send(subject, text, [receipient1, receipient2])
+        instance.send(subject, text, receipient1 [, receipient2])
 
     file:
         from myutil import file
