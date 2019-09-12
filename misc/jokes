@@ -13,7 +13,7 @@ mail_password = "your secure mail password"
 subject = "Your mail subject"
 receipient = "Your mail receipient"
 
-# OR use default vars in $HOME/.local/lib/python3.6/site-packages/myutil_defaults.py
+# OR use default vars in $HOME/.local/lib/python3.X/site-packages/myutil/defaults.py
 # and just specify this
 subject = "Your mail subject"
 receipient = "Your mail receipient"
