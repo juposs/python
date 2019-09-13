@@ -32,7 +32,7 @@ except KeyError:
     degraded_total = 0
 
 try:
-    degraded_ratio = jsonfile["pgmap"]["degraded_ratio"]
+    degraded_ratio = jsonfile["pgmap"]["degraded_ratio"]*100
 except KeyError:
     degraded_ratio = 0
 
@@ -51,7 +51,7 @@ except KeyError:
     misplaced_total = 0
 
 try:
-    misplaced_ratio = jsonfile["pgmap"]["misplaced_ratio"]
+    misplaced_ratio = jsonfile["pgmap"]["misplaced_ratio"]*100
 except KeyError:
     misplaced_ratio = 0
 
@@ -73,7 +73,7 @@ except KeyError:
 
 recovering_mb_sec = float(recovering_bytes_per_sec)/(2**20)
 
-print "0 Ceph_Recovery recovering_mb_sec={0:.2f}|recovering_objects_per_sec={1}|recovering_keys_per_sec={2}|misplaced_objects={3}|misplaced_ratio={4}|degraded_objects={5}|degraded_ratio={6} Recovery IO: {0:.2f} MiB/s | Objects/s: {1} | Keys/s: {2} | Misplaced objects: {3}; ratio: {4:.2f}% | Degraded objects: {5}; ratio: {6:.2f}%".format(recovering_mb_sec, recovering_objects_per_sec, recovering_keys_per_sec, misplaced_objects, misplaced_ratio, degraded_objects, degraded_ratio)
+print "0 Ceph_Recovery recovering_mb_sec={0:.2f}|recovering_objects_per_sec={1}|recovering_keys_per_sec={2}|misplaced_objects={3}|misplaced_ratio={4}|degraded_objects={5}|degraded_ratio={6} Recovery IO: {0:.2f} MiB/s | Objects/s: {1} | Keys/s: {2} | Misplaced objects: {3}; ratio: {4:.4f}% | Degraded objects: {5}; ratio: {6:.4f}%".format(recovering_mb_sec, recovering_objects_per_sec, recovering_keys_per_sec, misplaced_objects, misplaced_ratio, degraded_objects, degraded_ratio)
 
 #Ceph_Stats
 try:
@@ -144,7 +144,7 @@ if len(health_summary) < 1:
     health_summary_parsed = "{0} ".format(health_status)
 else:
     for each in health_summary:
-        health_summary_parsed = health_summary_parsed + "{0}: {1} | ".format(each["severity"], each["summary"])
+        health_summary_parsed = health_summary_parsed + "{0} | ".format(each["summary"])
 
 if health_status != "HEALTH_OK" or int(num_osds) != int(num_up_osds) or int(num_osds) != int(num_in_osds):
         status = 2
