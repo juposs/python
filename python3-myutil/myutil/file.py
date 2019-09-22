@@ -2,33 +2,37 @@
 #-*- coding: utf-8 -*-
 
 class setup:
-    def __init__(self, path, data=None):
+    def __init__(self, path):
         """Sort out path/filename.txt and data that is probalby written
 
         Usage:
         instance = file("/path/to/file.txt")
-        instance = file("/path/to/file.txt", "data")
         """
 
-        if os.path.exists(path) and os.path.isfile(path):
-            self.path = path
-        else:
-            print("Given path/filename doesn't exist or not a file.")
-            sys.exit(0)
-        self.data = data if data is not None else ""
-
-    def overwrite(self):
+    def overwrite(self, data):
         """Overwrite the specified file
         """
+        self.data = data
+
+        if os.path.exists(self.path) and os.path.isfile(self.path):
+            print("Overwriting file "+self.path)
+        else:
+            print("Given path/filename doesn't exist yet, or not a file. Writing anyways..")
 
         with open(self.path, "w", self.data) as file:
             file.write(self.data+"\n")
             file.close()
         return None
 
-    def append(self):
+    def append(self, data):
         """Append to the end of the specified file
         """
+        self.data = data
+
+        if os.path.exists(self.path) and os.path.isfile(self.path):
+            print("Appending file "+self.path)
+        else:
+            print("Given path/filename doesn't exist yet, or not a file. Writing anyways..")
 
         with open(self.path, "a", self.data) as file:
             file.write(self.data+"\n")
@@ -38,29 +42,35 @@ class setup:
     def read(self):
         """Read the specified file
         """
-
-        #TODO review/test
-        with open(self.path, "r") as file:
-            result = file.read()
-            file.close()
-        return result
+        if os.path.exists(self.path) and os.path.isfile(self.path):
+            with open(self.path, "r") as file:
+                result = file.read()
+                file.close()
+            return result
+        else:
+            print("Given path/filename doesn't exist or not a file. Exiting..")
+            sys.exit(0)
 
     def readline(self):
         """Read the specified file line for line
         """
-
-        #TODO review/test
-        with open(self.path, "r") as file:
-            result = file.readline()
-            file.close()
-        return result
+        if os.path.exists(self.path) and os.path.isfile(self.path):
+            with open(self.path, "r") as file:
+                result = file.readline()
+                file.close()
+            return result
+        else:
+            print("Given path/filename doesn't exist or not a file. Exiting..")
+            sys.exit(0)
 
     def create(self):
         """Create the specified file
         """
-
-        #TODO review/test
-        with open(self.path, "x") as file:
-            file.write()
-            file.close()
-        return result
+        if os.path.exists(self.path) and os.path.isfile(self.path):
+            print("Given path/filename does already exist. Exiting.. ")
+            sys.exit(0)
+        else:
+            with open(self.path, "x") as file:
+                file.write()
+                file.close()
+            return None
