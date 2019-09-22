@@ -15,24 +15,28 @@ class setup:
 
         self.logfile_path = logfile_path if logfile_path is not None else myutil_defaults.default_logfile_path
         self.maxBytes = maxBytes if maxBytes is not None else myutil_defaults.default_maxBytes
-        self.backupCount = backupCount if backupCount is not None else myutil_defaults.backupCount
+        self.backupCount = backupCount if backupCount is not None else myutil_defaults.default_backupCount
 
         logzero.logfile(self.logfile_path, backupCount=self.backupCount, maxBytes=self.maxBytes, disableStderrLogger=True)
         #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s');
         #logzero.formatter(formatter)
 
     def info(self, info):
+        logzero.logfile(self.logfile_path)
         logger.info(info)
         return None
 
     def warning(self, warning):
+        logzero.logfile(self.logfile_path)
         logger.warning(warning)
         return None
 
     def error(self, error):
+        logzero.logfile(self.logfile_path)
         logger.error(error)
         return None
 
     def debug(self, debug):
+        logzero.logfile(self.logfile_path)
         logger.debug(debug)
         return None
