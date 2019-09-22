@@ -3,6 +3,7 @@ setup_myuitl.py
 ./myutil/defaults.py
 ./myutil/file.py
 ./myutil/ldap.py
+./myutil/logger.py
 ./myutil/mail.py
 myutil.egg-info/PKG-INFO
 myutil.egg-info/SOURCES.txt

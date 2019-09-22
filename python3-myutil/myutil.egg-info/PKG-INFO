@@ -1,8 +1,8 @@
 Metadata-Version: 1.2
 Name: myutil
-Version: 2.6
+Version: 3.0
 Summary: A python utility package
-Home-page: https://github.com/juposs/python/tree/master/python3/myutil
+Home-page: https://github.com/juposs/python/tree/master/python3-myutil
 Author: Julian Poss
 Author-email: john.doe@gmail.com
 Maintainer: Julian Poss
