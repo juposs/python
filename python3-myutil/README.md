@@ -2,9 +2,9 @@
 
 apt install python3-pip
 
-wget https://github.com/juposs/python/raw/master/python3-myutil/dist/myutil-2.6-py3-none-any.whl
+wget https://github.com/juposs/python/raw/master/python3-myutil/dist/myutil-3.0-py3-none-any.whl
 
-pip3 install ./myutil.py-2.4-py2-none-any.whl --user
+pip3 install ./myutil.py-3.0-py2-none-any.whl --user
 
 # Defaults
 Defaults can be modified in $HOME/.local/lib/python3.X/site-packages/myutil/defaults.py
@@ -49,3 +49,21 @@ Defaults can be modified in $HOME/.local/lib/python3.X/site-packages/myutil/defa
         instance = file.setup("/path/to/file", "your data")
 
         instance.overwrite()
+
+    logging:
+        from myutil import logger
+
+        Modify defaults and use the minumum parameters:
+        log1 = logger.setup()
+
+        or give all parameters:
+        log1 = loggger.setup("/path/to/logfile", maxBytes=1000, backupCount=10)
+
+        Logfile will rotate after reaching maxBytes, default is '0', never rotate
+        If rotation enabled, it will keep 'backupCount' files, default is 10
+
+        then log stuff:
+        log1.info("info")
+        log1.warning("Warning")
+        log1.error("Error")
+        log1.debug("Debug")
