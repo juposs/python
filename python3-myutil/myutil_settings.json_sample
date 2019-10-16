@@ -1,21 +1,21 @@
-ldap = {
+{
+"ldap": {
     "match_attribute": "userPrincipalName",
     "dn": "OU=OrgUnit,DC=example,DC=org",
     "server": "example.org",
     "port": 636
-}
-
-mail = {
+},
+"mail": {
     "server": "mailserver.example.org",
     "port": "25",
     "sendfile": "false",
     "filepath": "None",
     "sender": "no-reply@example.org",
-    "mail_password": "None",
-}
-
-logger = {
+    "mail_password": "None"
+},
+"logger": {
     "logfile_path": "./myutil.log",
     "maxBytes": 0,
-    "backupCount": 10,
+    "backupCount": 10
+}
 }
