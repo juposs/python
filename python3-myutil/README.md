@@ -8,8 +8,11 @@ pip3 install ./myutil.py-3.0-py2-none-any.whl --user
 
 # Defaults
 Custom defaults can be stored in $HOME/myutil_settings.json
+
 See "myutil_settings.json_example"
+
 Everything that is not defined in $HOME/myutil_settings.json will get read from
+
 "$HOME/.local/lib/python3.X/site-packages/myutil/defaults.py"
 
 # Usage:
