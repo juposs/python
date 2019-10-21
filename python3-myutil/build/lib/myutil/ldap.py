@@ -1,25 +1,39 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
-import ldap, sys, os
+import ldap, sys, os, json
 
-from myutil import defaults as myutil_defaults
+# Import default vars
+from myutil import defaults
+defaults = defaults.ldap
 
-class setup:
-    def __init__(self, user, password, dn=None, server=None):
+home = os.path.expanduser("~")
+user_settings_file = os.path.join(home, "myutil_settings.json")
+
+defaults = dict(defaults)
+
+if os.path.exists(user_settings_file):
+    with open(user_settings_file) as file:
+        user_defaults = json.load(file)["ldap"]
+    defaults.update(user_defaults)
+
+class Ldap:
+    def __init__(self, user, password, dn=None, server=None, port=None):
         """ Sort out the given variables and if neccessary fill in default variables
 
         Usage:
         Modify defaults in the class and use the minumum parameters:
-        instance = myldap(username, password)
+        from myutil import Ldap
+        instance = Ldap(username, password)
 
         or give all parameters:
-        instance = myldap(username, password, dn, server)
+        instance = Ldap(username, password, dn, server, port)
 
         "dn" is the tree you want to start the search in, usually similar to "OU=OrgUnit,DC=example,DC=org"
         """
 
-        self.dn = dn if dn is not None else myutil_defaults.default_dn
-        self.server = server if server is not None else myutil_defaults.default_ldap_server
+        self.dn = dn if dn is not None else defaults["dn"]
+        self.server = server if server is not None else defaults["server"]
+        self.port = port if port is not None else defaults["port"]
 
         self.user = user
         self.password = password
@@ -36,7 +50,7 @@ class setup:
         "match_attribute" is the ldap attribute to match the "match_value" to, defaults to "userPrincipalName"
         """
 
-        self.match_attribute = match_attribute if match_attribute is not None else myutil_defaults.default_match_attribute
+        self.match_attribute = match_attribute if match_attribute is not None else defaults["match_attribute"]
 
         value_parsed = {}
         l = ldap.initialize('ldaps://'+self.server)

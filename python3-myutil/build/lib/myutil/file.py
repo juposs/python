@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
 
-class setup:
+class File:
     def __init__(self, path):
-        """Sort out path/filename.txt and data that is probalby written
+        """Sort out path/filename
 
         Usage:
-        instance = file("/path/to/file.txt")
+        from myutil import File
+        your_file = File("/path/to/file.txt")
         """
 
     def overwrite(self, data):

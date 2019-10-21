@@ -2,7 +2,7 @@
 
 apt install python3-pip
 
-wget https://github.com/juposs/python/raw/master/python3-myutil/dist/myutil-3.0-py3-none-any.whl
+wget https://github.com/juposs/python/raw/master/python3-myutil/dist/myutil-3.2.py3-none-any.whl
 
 pip3 install ./myutil.py-3.0-py2-none-any.whl --user
 

@@ -11,7 +11,7 @@ mail = {
     "sendfile": "false",
     "filepath": "None",
     "sender": "no-reply@example.org",
-    "mail_password": "None",
+    "password": "None",
 }
 
 logger = {

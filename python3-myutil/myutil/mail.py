@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 # Import default vars
 from myutil import defaults
-defaults = defaults.ldap
+defaults = defaults.mail
 
 home = os.path.expanduser("~")
 user_settings_file = os.path.join(home, "myutil_settings.json")

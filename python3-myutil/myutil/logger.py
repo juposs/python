@@ -4,7 +4,7 @@ import os, json
 
 # Import default vars
 from myutil import defaults
-defaults = defaults.ldap
+defaults = defaults.logger
 
 home = os.path.expanduser("~")
 user_settings_file = os.path.join(home, "myutil_settings.json")

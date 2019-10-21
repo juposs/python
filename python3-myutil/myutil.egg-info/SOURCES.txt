@@ -1,5 +1,6 @@
 README.md
 setup_myuitl.py
+./myutil/__init__.py
 ./myutil/defaults.py
 ./myutil/file.py
 ./myutil/ldap.py

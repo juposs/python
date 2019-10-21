@@ -3,24 +3,38 @@
 
 import smtplib
 import mimetypes
+import os, json
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from myutil import defaults as myutil_defaults
+# Import default vars
+from myutil import defaults
+defaults = defaults.mail
 
-class setup:
+home = os.path.expanduser("~")
+user_settings_file = os.path.join(home, "myutil_settings.json")
+
+defaults = dict(defaults)
+
+if os.path.exists(user_settings_file):
+    with open(user_settings_file) as file:
+        user_defaults = json.load(file)["mail"]
+    defaults.update(user_defaults)
+
+class Mail:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
-            instance = mail.setup(sender, mailserver, port, true, "/path/to/file", password)
+            from myutil import Mail
+            instance = Mail(sender, mailserver, port, true, "/path/to/file", password)
         """
 
-        self.server = server if server is not None else myutil_defaults.default_mail_server
-        self.port = port if port is not None else myutil_defaults.default_mail_port
-        self.sendfile = sendfile if sendfile is not None else myutil_defaults.default_sendfile
-        self.filepath = filepath if filepath is not None else myutil_defaults.default_filepath
-        self.sender = sender if sender is not None else myutil_defaults.default_sender
-        self.password = password if password is not None else myutil_defaults.default_mail_password
+        self.server = server if server is not None else defaults["server"]
+        self.port = port if port is not None else defaults["port"]
+        self.sendfile = sendfile if sendfile is not None else defaults["sendfile"]
+        self.filepath = filepath if filepath is not None else defaults["filepath"]
+        self.sender = sender if sender is not None else defaults["sender"]
+        self.password = password if password is not None else defaults["password"]
 
         self.server = smtplib.SMTP(self.server, self.port)
         self.msg = MIMEMultipart()

@@ -9,7 +9,7 @@ setup_kwargs = {'packages': ["myutil"],
 
 setuptools.setup(
      name='myutil',
-     version='3.0',
+     version='3.2',
      #py_modules=['myutil', 'myutil_defaults'],
      #package_dir={"":"."},
      download_url="",
