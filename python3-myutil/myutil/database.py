@@ -4,5 +4,4 @@ from myutil import defaults
 defaults = defaults.logger
 
 class Database():
-    def __init__(self, ):
-        
+    def __init__(self,):
