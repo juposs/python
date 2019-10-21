@@ -16,11 +16,12 @@ if os.path.exists(user_settings_file):
         user_defaults = json.load(file)["logger"]
     defaults.update(user_defaults)
 
-class setup:
+class Logger:
     def __init__(self, logfile_path=None, maxBytes=None, backupCount=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
-            log1 = logger.setup("/path/to/logfile", maxBytes=1000, backupCount=10)
+            from myutil import Logger
+            log1 = Logger("/path/to/logfile", maxBytes=1000, backupCount=10)
 
             Logfile will rotate after reaching maxBytes, default is '0', never rotate
             If rotation enabled, it will keep 'backupCount' files, default is 10

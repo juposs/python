@@ -21,11 +21,12 @@ if os.path.exists(user_settings_file):
         user_defaults = json.load(file)["mail"]
     defaults.update(user_defaults)
 
-class setup:
+class Mail:
     def __init__(self, sender=None, server=None, port=None, sendfile=None, filepath=None, password=None):
         """ Sort out the given variables and if neccessary fill in default variables
             or give all parameters:
-            instance = mail.setup(sender, mailserver, port, true, "/path/to/file", password)
+            from myutil import Mail
+            instance = Mail(sender, mailserver, port, true, "/path/to/file", password)
         """
 
         self.server = server if server is not None else defaults["server"]

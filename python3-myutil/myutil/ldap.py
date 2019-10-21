@@ -16,16 +16,17 @@ if os.path.exists(user_settings_file):
         user_defaults = json.load(file)["ldap"]
     defaults.update(user_defaults)
 
-class setup:
+class Ldap:
     def __init__(self, user, password, dn=None, server=None, port=None):
         """ Sort out the given variables and if neccessary fill in default variables
 
         Usage:
         Modify defaults in the class and use the minumum parameters:
-        instance = myldap(username, password)
+        from myutil import Ldap
+        instance = Ldap(username, password)
 
         or give all parameters:
-        instance = myldap(username, password, dn, server, port)
+        instance = Ldap(username, password, dn, server, port)
 
         "dn" is the tree you want to start the search in, usually similar to "OU=OrgUnit,DC=example,DC=org"
         """
