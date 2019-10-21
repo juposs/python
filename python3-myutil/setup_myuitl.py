@@ -2,14 +2,14 @@ import setuptools
 
 #optional = ['ansicolors', 'mock>=1.0.1']
 
-requires = ['python3-ldap', 'logzero']
+requires = ['python3-ldap', 'logzero', 'python3-psycopg2']
 
 setup_kwargs = {'packages': ["myutil"],
                 'package_dir': {'': "."}}
 
 setuptools.setup(
      name='myutil',
-     version='3.2',
+     version='3.3',
      #py_modules=['myutil', 'myutil_defaults'],
      #package_dir={"":"."},
      download_url="",
