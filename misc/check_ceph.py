@@ -105,12 +105,14 @@ print "0 Ceph_Stats read_mb_sec={0:.2f}|write_mb_sec={1:.2f}|read_op_per_sec={2}
 for each in jsonfile["pgmap"]["pgs_by_state"]:
     if each["state_name"] == "active+clean+scrubbing+deep":
         deep_scrubbing_pg = each["count"]
+        break
     else:
         deep_scrubbing_pg = 0
 
-for each in jsonfile["pgmap"]["pgs_by_state"]:
-    if each["state_name"] == "active+clean+scrubbing":
-        scrubbing_pg = each["count"]
+for every in jsonfile["pgmap"]["pgs_by_state"]:
+    if every["state_name"] == "active+clean+scrubbing":
+        scrubbing_pg = every["count"]
+        break
     else:
         scrubbing_pg = 0
 
@@ -135,20 +137,25 @@ except KeyError:
     health_status = jsonfile["health"]["overall_status"]
 
 try:
-    health_summary = jsonfile["health"]["summary"]
+    health_checks = jsonfile["health"]["checks"]
 except KeyError:
     health_summary = []
 
 health_summary_parsed = ""
-if len(health_summary) < 1:
-    health_summary_parsed = "{0} ".format(health_status)
+serverities = []
+if len(health_checks) < 1:
+    health_summary_parsed = "{0} |".format(health_status)
+    serverities.append(health_status)
 else:
-    for each in health_summary:
-        health_summary_parsed = health_summary_parsed + "{0} | ".format(each["summary"])
+    for each in health_checks:
+        health_summary_parsed = health_summary_parsed + "{0}: ({1}: {2}) | ".format(health_checks[each]["severity"], each, health_checks[each]["summary"]["message"])
+        serverities.append(health_checks[each]["severity"])
 
-if health_status != "HEALTH_OK" or int(num_osds) != int(num_up_osds) or int(num_osds) != int(num_in_osds):
-        status = 2
-else:
-        status = 0
+if "HEALTH_CRIT" in serverities:
+    status = 2
+elif "HEALTH_WARN" in serverities:
+    status = 1
+elif "HEALTH_OK" in serverities:
+    status = 0
 
-print "{0} Ceph_Health num_osds={1}|num_up_osds={2}|num_in_osds={3} Health-summary: {4}| {5}".format(status, num_osds, num_up_osds, num_in_osds, health_summary_parsed, pgstates)
+print "{0} Ceph_Health num_osds={1}|num_up_osds={2}|num_in_osds={3} {4} {5}".format(status, num_osds, num_up_osds, num_in_osds, health_summary_parsed, pgstates)
