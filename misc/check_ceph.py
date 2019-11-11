@@ -151,7 +151,7 @@ else:
         health_summary_parsed = health_summary_parsed + "{0}: ({1}: {2}) | ".format(health_checks[each]["severity"], each, health_checks[each]["summary"]["message"])
         serverities.append(health_checks[each]["severity"])
 
-if "HEALTH_CRIT" in serverities:
+if "HEALTH_ERR" in serverities:
     status = 2
 elif "HEALTH_WARN" in serverities:
     status = 1
