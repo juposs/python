@@ -47,7 +47,7 @@ class Mail:
         self.msg["From"] = self.sender
 
         # Check if user wants to send a file, if so read the specified file
-        if self.sendfile.lower() == "true":
+        if self.sendfile == True:
             fp = open(self.filepath)
             attachment = MIMEText(fp.read())
             fp.close()
