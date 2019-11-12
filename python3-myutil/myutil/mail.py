@@ -46,14 +46,6 @@ class Mail:
 
         self.msg["From"] = self.sender
 
-        # Check if user wants to send a file, if so read the specified file
-        if self.sendfile == True:
-            fp = open(self.filepath)
-            attachment = MIMEText(fp.read())
-            fp.close()
-            # Attach the file to the message
-            self.msg.attach(attachment)
-
     def send(self, subject, text, receipient):
         """ Send the mail
             Usage:
@@ -62,16 +54,19 @@ class Mail:
             instance.send(subject, text, receipient)
         """
 
-        #.subject = subject
-        #self.text = text
-        #self.receipient = receipient
-
         # Set subject to mail
         self.msg["Subject"]  = subject
 
-        # Set actual text of the email
-        #body = text
+        # First set actual text of the email, afterwards attach actual attachment
         self.msg.attach(MIMEText(text, "plain"))
+        
+        # Check if user wants to send a file, if so read the specified file
+        if self.sendfile == True:
+            fp = open(self.filepath)
+            attachment = MIMEText(fp.read())
+            fp.close()
+            # Attach the file to the message
+            self.msg.attach(attachment)
 
         # If given receipients is a list object cycle through list of receipients
         if type(receipient) == list:
