@@ -8,10 +8,10 @@ ldap = {
 mail = {
     "server": "mailserver.example.org",
     "port": "25",
-    "sendfile": "false",
-    "filepath": "None",
+    "sendfile": False,
+    "filepath": None,
     "sender": "no-reply@example.org",
-    "password": "None",
+    "password": None,
 }
 
 logger = {
