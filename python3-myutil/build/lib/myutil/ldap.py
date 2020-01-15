@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
-import ldap, sys, os, json
+import ldap3, sys, os, json
 
 # Import default vars
 from myutil import defaults
