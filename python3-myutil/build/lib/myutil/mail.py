@@ -39,7 +39,7 @@ class Mail:
         self.server = smtplib.SMTP(self.server, self.port)
         self.msg = MIMEMultipart()
         # If a password is given, use it to login to the mailserver
-        if self.password != None:
+        if self.password != "None":
             self.server.starttls()
             self.server.ehlo()
             self.server.login(self.sender, self.password)
@@ -47,7 +47,7 @@ class Mail:
         self.msg["From"] = self.sender
 
         # Check if user wants to send a file, if so read the specified file
-        if self.sendfile.lower() == "true":
+        if self.sendfile.lower() == "True":
             fp = open(self.filepath)
             attachment = MIMEText(fp.read())
             fp.close()
